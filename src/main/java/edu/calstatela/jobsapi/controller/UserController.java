@@ -78,7 +78,7 @@ public class UserController {
 		return user;
 	}
 	 
-	@PostMapping("/user/signup")
+	@PostMapping("/user/register")
 	public ResponseEntity<?> saveUser(@Valid @RequestBody User user, BindingResult bindingResult) {
 		userValidator.validate(user, bindingResult);		
 		if(bindingResult.hasErrors()) {
@@ -91,6 +91,8 @@ public class UserController {
 		roles.add(role);
 		user.setRoles(roles);
 		user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+		System.out.println("User E: " + user.getFirstName());
+		System.out.println("User E: " + user.getEmailId());
 		userRepository.save(user);
 		return ResponseEntity.ok().build();
 	}

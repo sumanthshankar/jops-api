@@ -1,7 +1,30 @@
 
+    create table authors (
+       author_id integer not null,
+        author_emailid varchar(255),
+        author_name varchar(255),
+        primary key (author_id)
+    ) engine=MyISAM;
+
+    create table authors_books (
+       author_id integer not null,
+        book_id integer not null
+    ) engine=MyISAM;
+
+    create table books (
+       book_id integer not null,
+        book_description varchar(255),
+        book_title varchar(255),
+        primary key (book_id)
+    ) engine=MyISAM;
+
     create table hibernate_sequence (
        next_val bigint
     ) engine=MyISAM;
+
+    insert into hibernate_sequence values ( 1 );
+
+    insert into hibernate_sequence values ( 1 );
 
     insert into hibernate_sequence values ( 1 );
 
@@ -34,6 +57,16 @@
 
     alter table users 
        add constraint UK_pwrpg821nujmmnavoq7s420jn unique (email_id);
+
+    alter table authors_books 
+       add constraint FKhljw0x9o8s80uce55w3iqhlqk 
+       foreign key (book_id) 
+       references books (book_id);
+
+    alter table authors_books 
+       add constraint FK1qmg0jp4gtkls4bn52xhg4jnf 
+       foreign key (author_id) 
+       references authors (author_id);
 
     alter table user_role 
        add constraint FKt7e7djp752sqn6w22i6ocqy6q 
